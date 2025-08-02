@@ -37,10 +37,6 @@ nextread-app/
 │ ├── index.js # App entry point
 │ └── styles/ # Optional custom CSS
 
-yaml
-Copy
-Edit
-
 ---
 
 ## 🛠️ Tech Stack
@@ -62,7 +58,7 @@ Edit
 ### Steps
 
 # Clone the repository
-git clone https://github.com/your-username/nextread-app.git
+git clone https://github.com/shahith2003/NextRead-eCommerce-Application.git
 
 # Navigate to the project folder
 cd nextread-app
