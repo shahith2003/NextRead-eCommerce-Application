@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+*{
+    font-family: "Merriweather Sans", sans-serif;
+    color: #1D3557;
+}
+
+nav{
+  z-index: 999;
+}
+
+.cat-card{
+  transition: 0.3s;
+}
+
+.cat-card:hover{
+  transform: scale(1.1);
+}
+
+.bookcard{
+  
+  transition: 0.3s;
+}
+
+.bookcard:hover{
+  transform: scale(1.1);
+}
+
+/* In your CSS file or inside a <style> tag */
+.banner {
+  max-height: 90vh; /* or whatever height you want */
+  object-fit: cover;
+  width: 100%;
+}
+
+
+.srh-btn{
+  border: #1D3557 1px solid;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.srh-btn:hover{
+  transform: scale(1.1);
+  color: white;
+  background-color:#1D3557;
+}
+
+/* Target only top-level nav-links, not dropdown items */
+.navbar-nav > .nav-item > .nav-link {
+  transition: 0.3s;
+  color: #1D3557;
+}
+
+.navbar-nav > .nav-item > .nav-link:hover {
+  transform: scale(1.1);
+}
+
+.book-img {
+  height: 250px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 0.25rem;
+}
+
