@@ -7,6 +7,7 @@ import Mystery from './pages/Mystery'
 import AboutPage from './pages/AboutPage'
 import Contact from './pages/ContactUs'
 import Billing from './pages/Billing'
+import ThankYou from './pages/Thankyou'
 // import other pages like Library, About, etc., if needed
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={<Home />} />
          <Route path="/book/:id" element={<BookDetail />} />
           <Route path="/billing" element={<Billing />} />
+           <Route path="/thankyou" element={<ThankYou />} />
          <Route path="/categories/fiction" element={<Fiction />} />
          <Route path="/categories/non-fiction" element={<NonFiction />} />
          <Route path="/categories/mystery" element={<Mystery />} />
