@@ -28,9 +28,27 @@ nav{
 
 /* In your CSS file or inside a <style> tag */
 .banner {
-  max-height: 90vh; /* or whatever height you want */
-  object-fit: cover;
   width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* For small screens (like mobiles), ensure it still fills the height */
+@media (max-width: 768px) {
+  .banner {
+    height: 100vh; /* Full viewport height on mobile */
+  }
+}
+
+.auth-box {
+  background: #fff;
+  transition: all 0.3s ease-in-out;
+}
+
+.auth-box .btn-outline-primary:hover {
+  background-color: #0d6efd;
+  color: white;
 }
 
 

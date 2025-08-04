@@ -1,8 +1,9 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // ✅ Required
 import { Link } from "react-router-dom";
 
 function Billing() {
+  const navigate = useNavigate(); // ✅ Hook
   const [paymentMethod, setPaymentMethod] = useState("cod");
   const [formData, setFormData] = useState({
     name: "",
@@ -21,7 +22,9 @@ function Billing() {
   const handleSubmit = (e) => {
     e.preventDefault();
     alert("Order Placed Successfully!");
+    navigate("/thankyou"); // ✅ Navigate after alert
   };
+
   return (
     <div className="container py-5">
       <h2 className="mb-4">Billing & Delivery Details</h2>
@@ -95,7 +98,7 @@ function Billing() {
           </div>
         </div>
 
-        {/* Conditional Payment Inputs */}
+        {/* Conditional Inputs */}
         {paymentMethod === "card" && (
           <>
             <div className="mb-3">
@@ -147,23 +150,25 @@ function Billing() {
           </div>
         )}
 
+        {/* Buttons */}
         <div className="d-flex gap-2">
-          <Link to="/thankyou">
-            <button type="submit" className="btn btn-success mt-3">
-              Place Order
-            </button>
-          </Link>
-          <Link className="mt-3" onClick={() => {
+          <button type="submit" className="btn btn-success mt-3">
+            Place Order
+          </button>
+
+          <button
+            type="button"
+            className="btn btn-primary mt-3"
+            onClick={() => {
               if (window.history.length > 1) {
                 navigate(-1);
               } else {
                 navigate("/");
               }
-            }}><button
-            className="btn btn-primary"
+            }}
           >
             Go Back
-          </button></Link>
+          </button>
         </div>
       </form>
     </div>

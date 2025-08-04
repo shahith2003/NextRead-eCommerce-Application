@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import HomeCard from "../components/HomeCard";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 function BookDetail() {
   const { id } = useParams();
   const [book, setBook] = useState(null);
   const navigate = useNavigate();
-   const handleProceed = () => {
+  const handleProceed = () => {
     navigate("/billing");
   };
 
@@ -22,7 +24,8 @@ function BookDetail() {
 
   return (
     <>
-      <div className="container py-5">
+      <Navbar />
+      <div className="container mt-5 py-5">
         <div className="row">
           <div className="col-md-4">
             <img
@@ -43,11 +46,11 @@ function BookDetail() {
             <p>
               {typeof book.description === "string"
                 ? book.description.slice(0, 200) +
-                  (book.description.length > 200 ? "..." : "")
+                (book.description.length > 200 ? "..." : "")
                 : book.description?.value
-                ? book.description.value.slice(0, 200) +
+                  ? book.description.value.slice(0, 200) +
                   (book.description.value.length > 200 ? "..." : "")
-                : "No description available."}
+                  : "No description available."}
             </p>
             <div className="d-flex gap-2">
               <button className="btn btn-success" onClick={handleProceed}>Proceed to Buy</button>
@@ -68,6 +71,7 @@ function BookDetail() {
         </div>
       </div>
       <HomeCard />
+      <Footer />
     </>
   );
 }

@@ -1,10 +1,12 @@
 // components/CateSamp.jsx
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useCart } from "../CartContext";
 import { Link } from "react-router-dom";
 
 const CateSamp = ({ title, subject, limit = 4 }) => {
   const [books, setBooks] = useState([]);
+  const { addToCart } = useCart(); // ✅ use the custom hook properly
 
   useEffect(() => {
     axios
@@ -17,7 +19,9 @@ const CateSamp = ({ title, subject, limit = 4 }) => {
     <div className="container py-4">
       <div className="d-flex justify-content-between align-items-center mb-3">
         <h2 className="mb-0">{title}</h2>
-        <a href={`/categories/${subject}`} className="text-primary text-decoration-none">Show More</a>
+        <a href={`/categories/${subject}`} className="text-primary text-decoration-none">
+          Show More
+        </a>
       </div>
 
       <div className="row">
@@ -46,9 +50,25 @@ const CateSamp = ({ title, subject, limit = 4 }) => {
                   </div>
                   <h6 className="text-primary">₹{499 + index * 10}</h6>
 
-                  <a href={`/book/${book.key.replace("/works/", "")}`} className="btn srh-btn">
-                    Buy Now
-                  </a>
+                  <div className="d-grid gap-2 mt-auto">
+                    <a href={`/book/${bookId}`} className="btn btn-primary">
+                      Buy Now
+                    </a>
+                    <button
+                      className="btn btn-outline-primary mb-2"
+                      onClick={() =>
+                        addToCart({
+                          id: bookId,
+                          title: book.title,
+                          author: book.authors?.[0]?.name || "Unknown Author",
+                          price: 499 + index * 10,
+                          cover: cover,
+                        })
+                      }
+                    >
+                      Add to Cart
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
