@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 import HomeCard from "../components/HomeCard";
 import Navbar from "../components/Navbar";
@@ -8,9 +9,11 @@ import Footer from "../components/Footer";
 function BookDetail() {
   const { id } = useParams();
   const [book, setBook] = useState(null);
+  const location = useLocation();
+  const price = location.state?.price || 499; // default fallback price
   const navigate = useNavigate();
   const handleProceed = () => {
-    navigate("/billing");
+    navigate("/billing", { state: { price } });
   };
 
   useEffect(() => {
@@ -52,6 +55,7 @@ function BookDetail() {
                   (book.description.value.length > 200 ? "..." : "")
                   : "No description available."}
             </p>
+            <h4 className="text-primary">Price: ₹{price}</h4>
             <div className="d-flex gap-2">
               <button className="btn btn-success" onClick={handleProceed}>Proceed to Buy</button>
               <button

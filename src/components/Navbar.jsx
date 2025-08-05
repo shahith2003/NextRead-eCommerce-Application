@@ -1,16 +1,30 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase"; // make sure this path is correct
 import { useCart } from '../CartContext.jsx';
 import logo from '../assets/logo-preview.png';
 
 function Navbar() {
     const { cartItems } = useCart(); // ✅ get cart from context
     const cartCount = cartItems.length;
+    const handleLogout = () => {
+        signOut(auth)
+            .then(() => {
+                console.log("User signed out");
+                // optionally redirect to login
+                window.location.href = "/auth";
+            })
+            .catch((error) => {
+                console.error("Logout error:", error);
+            });
+    };
+
 
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary position-fixed w-100 top-0 z-3">
             <div className="container-fluid">
-                <Link className="w-25 navbar-brand" to="/"><img src={logo} style={{width:'50px'}}  alt="imag" /></Link>
+                <Link className="w-25 navbar-brand" to="/"><img src={logo} style={{ width: '50px' }} alt="imag" /></Link>
 
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
                     <span className="navbar-toggler-icon"></span>
@@ -38,11 +52,14 @@ function Navbar() {
 
                     {/* ✅ Cart Icon with Count */}
                     <Link to="/cart" className="btn btn-outline-primary position-relative">
-                        🛒 Cart
+                        <i className="fa-solid fa-cart-shopping"></i>
                         <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                             {cartCount}
                         </span>
                     </Link>
+                    <button onClick={handleLogout} className="btn btn-danger ms-2">
+                        Logout
+                    </button>
                 </div>
             </div>
         </nav>

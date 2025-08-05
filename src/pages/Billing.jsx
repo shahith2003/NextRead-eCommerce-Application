@@ -1,10 +1,14 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // ✅ Required
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 function Billing() {
-  const navigate = useNavigate(); // ✅ Hook
+  const navigate = useNavigate();
+  const location = useLocation();
+  const price = location.state?.price || 499;
+  const total = location.state?.total || 0;
   const [paymentMethod, setPaymentMethod] = useState("cod");
+
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -21,13 +25,28 @@ function Billing() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("Order Placed Successfully!");
-    navigate("/thankyou"); // ✅ Navigate after alert
+    if (paymentMethod === "upi") {
+      // Redirect to UPI intent with fake UPI ID
+      const upiLink = `upi://pay?pa=fakeuser@upi&pn=NextReadBook&am=${price}&cu=INR`;
+      window.location.href = upiLink;
+
+      // Optional: Show instruction to user to return manually
+      setTimeout(() => {
+        // alert("If payment failed or cancelled, you will be redirected.");
+        navigate("/thankyou");
+      }, 5000); // fallback
+    } else {
+      // alert("Order Placed Successfully!");
+      navigate("/thankyou");
+    }
   };
 
   return (
     <div className="container py-5">
       <h2 className="mb-4">Billing & Delivery Details</h2>
+      <h4 className="text-primary mb-4">
+        Order Total: ₹{location.state?.price !== undefined ? price : total}
+      </h4>
 
       <form onSubmit={handleSubmit}>
         {/* User Info */}
@@ -65,37 +84,25 @@ function Billing() {
         {/* Payment Option */}
         <div className="mb-4">
           <label className="form-label fw-bold">Payment Method</label>
-          <div className="form-check">
-            <input
-              className="form-check-input"
-              type="radio"
-              name="paymentMethod"
-              value="cod"
-              checked={paymentMethod === "cod"}
-              onChange={(e) => setPaymentMethod(e.target.value)}
-            />
-            <label className="form-check-label">Cash on Delivery</label>
-          </div>
-          <div className="form-check">
-            <input
-              className="form-check-input"
-              type="radio"
-              name="paymentMethod"
-              value="card"
-              onChange={(e) => setPaymentMethod(e.target.value)}
-            />
-            <label className="form-check-label">Credit/Debit Card</label>
-          </div>
-          <div className="form-check">
-            <input
-              className="form-check-input"
-              type="radio"
-              name="paymentMethod"
-              value="netbanking"
-              onChange={(e) => setPaymentMethod(e.target.value)}
-            />
-            <label className="form-check-label">Net Banking</label>
-          </div>
+          {["cod", "card", "netbanking", "upi"].map((method) => (
+            <div className="form-check" key={method}>
+              <input
+                className="form-check-input"
+                type="radio"
+                name="paymentMethod"
+                value={method}
+                checked={paymentMethod === method}
+                onChange={(e) => setPaymentMethod(e.target.value)}
+              />
+              <label className="form-check-label text-capitalize">
+                {method === "cod"
+                  ? "Cash on Delivery"
+                  : method === "upi"
+                    ? "UPI / GPay / PhonePe"
+                    : method}
+              </label>
+            </div>
+          ))}
         </div>
 
         {/* Conditional Inputs */}
@@ -152,13 +159,17 @@ function Billing() {
 
         {/* Buttons */}
         <div className="d-flex gap-2">
-          <button type="submit" className="btn btn-success mt-3">
-            Place Order
+          <button
+            type="submit"
+            className={`btn ${paymentMethod === "upi" ? "btn-primary" : "btn-success"
+              } mt-3`}
+          >
+            {paymentMethod === "upi" ? "Pay with UPI" : "Place Order"}
           </button>
 
           <button
             type="button"
-            className="btn btn-primary mt-3"
+            className="btn btn-secondary mt-3"
             onClick={() => {
               if (window.history.length > 1) {
                 navigate(-1);

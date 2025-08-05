@@ -51,9 +51,15 @@ const CateSamp = ({ title, subject, limit = 4 }) => {
                   <h6 className="text-primary">₹{499 + index * 10}</h6>
 
                   <div className="d-grid gap-2 mt-auto">
-                    <a href={`/book/${bookId}`} className="btn btn-primary">
+                    <Link
+                      to={`/book/${bookId}`}
+                      state={{
+                        price: 499 + index * 10,
+                      }}
+                      className="btn btn-primary"
+                    >
                       Buy Now
-                    </a>
+                    </Link>
                     <button
                       className="btn btn-outline-primary mb-2"
                       onClick={() =>

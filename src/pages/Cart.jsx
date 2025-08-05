@@ -50,7 +50,7 @@ const Cart = () => {
                             <button className="btn btn-outline-danger me-2" onClick={clearCart}>
                                 Clear Cart
                             </button>
-                            <Link to="/billing">
+                            <Link to="/billing" state={{ total }}>
                                 <button className="btn btn-success">
                                     Proceed to Checkout
                                 </button>
