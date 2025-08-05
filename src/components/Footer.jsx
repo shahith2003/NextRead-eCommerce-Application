@@ -22,7 +22,7 @@ function Footer() {
             <h5 className="fw-bold mb-3 text-white">Quick Links</h5>
             <ul className="list-unstyled">
               <li className="mb-2">
-                <a href="/" className="text-white text-decoration-none">
+                <a href="/home" className="text-white text-decoration-none">
                   Home
                 </a>
               </li>

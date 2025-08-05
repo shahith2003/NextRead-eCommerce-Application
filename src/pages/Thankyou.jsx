@@ -5,7 +5,7 @@ function ThankYou() {
   const navigate = useNavigate();
 
   const handleGoHome = () => {
-    navigate('/');
+    navigate('/homee');
   };
 
   return (

@@ -14,7 +14,7 @@ const Cart = () => {
 
             {cartItems.length === 0 ? (
                 <div className="alert alert-info">
-                    Your cart is empty. <Link to="/">Go shopping</Link>
+                    Your cart is empty. <Link to="/home">Go shopping</Link>
                 </div>
             ) : (
                 <>

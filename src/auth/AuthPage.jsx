@@ -46,7 +46,7 @@ const AuthPage = () => {
         // LOGIN
         await signInWithEmailAndPassword(auth, email, password);
         alert("Login successful!");
-        navigate("/"); // or navigate to your protected page
+        navigate("/home"); // or navigate to your protected page
       } else {
         // REGISTER
         await createUserWithEmailAndPassword(auth, email, password);

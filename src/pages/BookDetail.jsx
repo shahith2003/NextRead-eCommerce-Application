@@ -64,7 +64,7 @@ function BookDetail() {
                   if (window.history.length > 1) {
                     navigate(-1);
                   } else {
-                    navigate("/");
+                    navigate("/home");
                   }
                 }}
               >

@@ -17,8 +17,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/auth" element={<AuthPage />} />
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<AuthPage />} />
+        <Route path="/home" element={<Home />} />
          <Route path="/book/:id" element={<BookDetail />} />
           <Route path="/billing" element={<Billing />} />
            <Route path="/thankyou" element={<ThankYou />} />
