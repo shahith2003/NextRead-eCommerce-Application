@@ -24,16 +24,16 @@ function Navbar() {
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary position-fixed w-100 top-0 z-3">
             <div className="container-fluid">
-                <Link className="w-25 navbar-brand" to="/"><img src={logo} style={{ width: '50px' }} alt="imag" /></Link>
+                <Link className="w-25 navbar-brand" to="/"><img src={logo} alt="imag" /></Link>
 
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
                     <span className="navbar-toggler-icon"></span>
                 </button>
 
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul className="navbar-nav me-auto gap-4 mb-2 mb-lg-0">
+                    <ul className="navbar-nav me-auto gap-1 mb-2 mb-lg-0">
                         <li className="nav-item"><Link className="nav-link" to="/">Home</Link></li>
-                        <li className="nav-item"><Link className="nav-link" to="/about">About Us</Link></li>
+                        <li className="nav-item"><Link className="nav-link" to="/about">About</Link></li>
                         <li className="nav-item dropdown">
                             <Link className="nav-link dropdown-toggle" to="/categories" data-bs-toggle="dropdown">Categories</Link>
                             <ul className="dropdown-menu">
@@ -42,7 +42,7 @@ function Navbar() {
                                 <li><Link className="dropdown-item" to="/categories/mystery">Mystery</Link></li>
                             </ul>
                         </li>
-                        <li className="nav-item"><Link className="nav-link" to="/contact">Contact Us</Link></li>
+                        <li className="nav-item"><Link className="nav-link" to="/contact">Contact</Link></li>
                     </ul>
 
                     <form className="d-flex me-3" role="search">
@@ -53,7 +53,7 @@ function Navbar() {
                     {/* ✅ Cart Icon with Count */}
                     <Link to="/cart" className="btn btn-outline-primary position-relative">
                         <i className="fa-solid fa-cart-shopping"></i>
-                        <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        <span className="top-0 start-100 translate-middle badge rounded-pill bg-danger">
                             {cartCount}
                         </span>
                     </Link>

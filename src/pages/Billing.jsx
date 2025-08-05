@@ -27,7 +27,7 @@ function Billing() {
     e.preventDefault();
     if (paymentMethod === "upi") {
       // Redirect to UPI intent with fake UPI ID
-      const upiLink = `upi://pay?pa=fakeuser@upi&pn=NextReadBook&am=${price}&cu=INR`;
+      const upiLink = `upi://pay?pa=smartshahith2110@okhdfcbank&pn=NextReadBook&am=${price}&cu=INR`;
       window.location.href = upiLink;
 
       // Optional: Show instruction to user to return manually

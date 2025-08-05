@@ -48,13 +48,13 @@ const CateSamp = ({ title, subject, limit = 4 }) => {
                   <div className="mb-2">
                     <span className="badge bg-success">★ 4.{index + 1}</span>
                   </div>
-                  <h6 className="text-primary">₹{499 + index * 10}</h6>
+                  <h6 className="text-primary">₹{1 + index * 10}</h6>
 
                   <div className="d-grid gap-2 mt-auto">
                     <Link
                       to={`/book/${bookId}`}
                       state={{
-                        price: 499 + index * 10,
+                        price: 1 + index * 10,
                       }}
                       className="btn btn-primary"
                     >
@@ -67,7 +67,7 @@ const CateSamp = ({ title, subject, limit = 4 }) => {
                           id: bookId,
                           title: book.title,
                           author: book.authors?.[0]?.name || "Unknown Author",
-                          price: 499 + index * 10,
+                          price: 1 + index * 10,
                           cover: cover,
                         })
                       }
