@@ -15,7 +15,7 @@ import AuthPage from './auth/AuthPage'
 
 function App() {
   return (
-    <Router>
+    <Router basename="/nextread">
       <Routes>
         <Route path="/" element={<AuthPage />} />
         <Route path="/home" element={<Home />} />
